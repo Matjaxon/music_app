@@ -1,2 +1,12 @@
-<h1>Bands#new</h1>
-<p>Find me in app/views/bands/new.html.erb</p>
+<h1>Add a new band</h1>
+
+<form action="<%= bands_url %>" method="POST">
+  <%= auth_token %>
+
+  <label>
+    Band Name:
+    <input type="text" name="band[name]" value="<%= @band.name %>">
+  </label>
+
+  <input type="submit" value="Create Band">
+</form>

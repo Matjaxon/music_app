@@ -1,0 +1,32 @@
+<h1>Add a New Album</h1>
+
+<% recording_types = ["studio", "live"] %>
+
+<form action="<%= albums_url %>" method="POST">
+  <%= auth_token %>
+
+  <label>
+    Title:
+    <input type="text" name="album[title]">
+  </label><br><br>
+
+  <label>
+    Band:
+    <select name="album[band_id]">
+      <% @bands.each do |band| %>
+        <option value="<%= band.id %>"><%= band.name %></option>
+      <% end %>
+    </select>
+  </label><span>&nbsp|&nbsp</span><%= link_to "Add a new band", new_band_url %><br><br>
+
+  <label>
+    Recording Type:<br>
+    <% recording_types.each do |rec_type| %>
+      <input type="radio" name="album[recording_type]" value="<%= rec_type %>">
+      <%= rec_type.titleize %><br>
+    <% end %>
+  </label><br><br>
+
+  <input type="submit" value="Create Album">
+
+</form>

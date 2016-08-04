@@ -1,0 +1,36 @@
+<h1>Add New Track</h1>
+
+<% track_types = ["regular", "bonus"] %>
+
+<form action="<%= tracks_url %>" method="POST">
+  <%= auth_token %>
+
+  <label>
+    Title:
+    <input type="text" name="track[title]">
+  </label><br><br>
+
+  <label>
+    Album:
+    <select name="track[album_id]">
+      <% @albums.each do |album| %>
+        <option value="<%= album.id %>"><%= album.title %></option>
+      <% end %>
+    </select>
+  </label><br><br>
+
+  <label>
+    Track Type:<br>
+    <% track_types.each do |t_type| %>
+      <input type="radio" name="track[track_type]"
+        value="<%= t_type %>"><%= t_type.titleize %><br>
+    <% end %>
+  </label><br><br>
+
+  <label>
+    Lyrics:<br>
+    <textarea name="track[lyrics]" rows="10" cols="60"></textarea>
+  </label><br><br>
+
+  <input type="submit" value="Add Track">
+</form>

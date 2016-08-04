@@ -1,0 +1,9 @@
+<h1>All Albums</h1>
+
+<div>
+  <% @albums.each do |album| %>
+    <h3><%= link_to album.title, album_url(album.id) %> by <%= link_to album.band.name, band_url(album.band.id) %></h3>
+  <% end %>
+</div>
+
+<%= link_to "Add a new album", new_album_url %>

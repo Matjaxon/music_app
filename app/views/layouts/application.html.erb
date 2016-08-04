@@ -18,7 +18,7 @@
 
     <ul>
       <% if flash[:errors] %>
-        <% flash[:errors].each do |error| %>
+        <% flash[:errors].flatten.each do |error| %>
           <li><%= error %></li>
         <% end %>
       <% end %>
