@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :logged_in?
 
   def index
     @albums = Album.includes(:band).all
@@ -23,6 +24,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.includes(:band).find_by(id: params[:id])
+    @tracks = Track.where(album_id: @album.id)
   end
 
   private

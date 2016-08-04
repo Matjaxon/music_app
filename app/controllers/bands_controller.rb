@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :logged_in?
+
   def index
     @bands = Band.all
   end
@@ -13,7 +15,7 @@ class BandsController < ApplicationController
       redirect_to band_url(@band)
     else
       flash.now[:errors] ||= []
-      flash.now[:errors] << @band.error.full_messages
+      flash.now[:errors] << @band.errors.full_messages
       render :new
     end
   end

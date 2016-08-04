@@ -1,0 +1,17 @@
+<h1>Add a Note</h1>
+<h3>For <%= @track.title %></h3>
+
+  <form action="<%= track_notes_url(@track) %>" method="POST">
+    <%= auth_token %>
+    <input type="hidden" name="note[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="note[track_id]" value="<%= params[:track_id] %>">
+
+    <label>
+      Note:<br>
+      <textarea name="note[note_body]" rows="5", cols="40"></textarea>
+    </label><br><br>
+
+    <input type="submit" value="Add Note">
+  </form><br>
+
+  <%= link_to "Cancel", track_url(@track) %>

@@ -1,2 +1,9 @@
 <h1><%= @album.title %></h1>
-<h3> by <%= @album.band.name %></h3>
+<h3> by <%= link_to @album.band.name, band_url(@album.band) %></h3>
+
+<h2>Tracks:</h2>
+  <% @tracks.each do |track| %>
+    <%= link_to track.title, track_url(track) %><br>
+  <% end %><br>
+
+<%= link_to "Back to all albums", albums_url %>

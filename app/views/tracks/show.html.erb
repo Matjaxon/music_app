@@ -1,2 +1,18 @@
-<h1>Tracks#show</h1>
-<p>Find me in app/views/tracks/show.html.erb</p>
+<h1><%= @track.title %></h1>
+
+<h3> By <%= link_to @track.band.name, band_url(@track.band) %></h3>
+<h3> Featured on <%= link_to @track.album.title, album_url(@track.album) %></h3>
+
+<p><%= @track.lyrics %></p>
+
+<h2>Notes:</h2>
+<% unless @track.notes.empty? %>
+  <% @track.notes.each do |note| %>
+    <p>From: <%= note.user.email %></p>
+    <p><%= note.note_body %></p><br><br>
+  <% end %>
+<% else %>
+  <p>No notes for this track.</p>
+<% end %>
+
+<%= render "notes/note", track: @track%>
